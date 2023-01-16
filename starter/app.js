@@ -7,6 +7,10 @@ const  express = require('express');
 const { fs } = require('fs');
 const app = express();
 
+//get db connection
+
+const connectDB = require('./db/connectdb');
+
 const notFoundMiddleware = require('./middleware/error-handlers')
 const errorMiddleware = require('./middleware/not-found')
 
@@ -27,11 +31,19 @@ app.get('/', (req, resp) => {
 app.use(notFoundMiddleware)
 app.use(errorMiddleware)
 
-const port = process.env.PORT  || 3000 
+const port = process.env.PORT  || 3000  // if the  port is  undefined, use  port 3000
 
 const start = async () => {
     try {
         //connectDB
+       //this  returns a promise so we use await here
+       await connectDB(process.env.MONGO_URI)
+       .then(con => {
+        console.log('DB  connected ......')
+       }).catch(err => {
+        console.log('can not connect' , err);
+       })
+
         app.listen(port, console.log(`Server is  listening ${port}...`))
 
     }catch(err) {
