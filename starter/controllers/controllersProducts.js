@@ -1,15 +1,14 @@
-//  controller funcs  for all the  business Logic
-
+//  controller funcs  for all the  business Logic Here
+  
 const getAllProductsStatic = async(req,resp) => {
-     //return  JSON FILE
+    throw new Error('testing async errors'); 
+  //return  JSON FILE
    resp.status(200).json({msg: `products testing routes`}) 
    
 }
 
-
-
 const getAllProducts = async(req, resp) => {
-    //return  JSON FILE
+    //return  json as response
   resp.status(200).json({msg: `products  routes`}) 
   
 }

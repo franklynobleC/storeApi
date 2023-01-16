@@ -4,7 +4,7 @@ const express = require('express');
 //invoke  router
 const router = express.Router()
 
-const {getAllProducts, getAllProductsStatic }    = require('../controllers/products')
+const {getAllProducts, getAllProductsStatic }    = require('../controllers/controllersProducts')
   
 //append  '/' to the default router   
 // '/api/v1/products/static'

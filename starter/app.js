@@ -1,7 +1,8 @@
 // console.log('storeApi')
 
-require('dotenv').config()
+require('dotenv').config()   // get  env file
 //async errors 
+require('express-async-errors');
 
 const  express = require('express');
 const { fs } = require('fs');
@@ -10,7 +11,7 @@ const app = express();
 //get db connection var
 const connectDB = require('./db/connectdb');
 //get routes from the routes package
-const productsRouter = require('./routes/products');
+const productsRouter = require('./routes/routesProducts');
 
 const notFoundMiddleware = require('./middleware/error-handlers')
 const errorMiddleware = require('./middleware/not-found')
