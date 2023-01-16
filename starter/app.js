@@ -7,9 +7,10 @@ const  express = require('express');
 const { fs } = require('fs');
 const app = express();
 
-//get db connection
-
+//get db connection var
 const connectDB = require('./db/connectdb');
+//get routes from the routes package
+const productsRouter = require('./routes/products');
 
 const notFoundMiddleware = require('./middleware/error-handlers')
 const errorMiddleware = require('./middleware/not-found')
@@ -18,15 +19,17 @@ const errorMiddleware = require('./middleware/not-found')
 
 app.use(express.json());
 
-//roots 
+//routes 
 
 app.get('/', (req, resp) => {
     resp.send('<h1>store API </h1> <a href="/api/v1/products">products<a/>')
 })
 
+//base routes for all the routes
+app.use('/api/v1/products', productsRouter )
 
 
-//products route 
+//if error, use  this route 
 
 app.use(notFoundMiddleware)
 app.use(errorMiddleware)
