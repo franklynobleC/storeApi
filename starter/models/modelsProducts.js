@@ -29,6 +29,12 @@ const productSchema = new mongoose.Schema({
 
     company : {
         type: String,
-        enum: ['HNI', 'STEELCASE',' IKEA', 'LIDDY']
-    }
+        enum: {
+            values: ['caressa', 'marcos','ikea', 'liddy'],
+            message: '{VALUE} is not supported'
+        } ,  },
 })
+
+//exports  models  schema
+
+module.exports = mongoose.model('Product', productSchema);
